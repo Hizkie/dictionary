@@ -1,28 +1,28 @@
 import re 
 import string 
 
-engam = {}
-am = []
-eng = []
-i =0
+engam = {} #eng-am dictionary
+am = [] #list of amharic words
+eng = [] #list of english words
+i =0  #counter
 for word in amharic:
-    x  = word
-
-    if word.startswith('1'):
+    if word.startswith('1'):  #if a word start with a number remove the punctuation and the number. 
      
-        word  = word.translate(str.maketrans('', '', string.punctuation))
-        words = re.split(r'\d',word)
+        word  = word.translate(str.maketrans('', '', string.punctuation)) #remove punctuation
+        words = re.split(r'\d',word) 
         if len(words)>1:
-            eng.append(data['English'].loc[i])
-            am.append(words[1].strip().replace(" ","_"))
+            eng.append(data['English'].loc[i]) # add the corresponding english word to the list
+            am.append(words[1].strip().replace(" ","_")) # add the modified amharic word to the list by replacing space in multiwords with "_" 
     else:
         if len(word)>1:
-            eng.append(data['English'].loc[i])
-            am.append(word.strip().replace(" ","_"))
+            eng.append(data['English'].loc[i]) # add the corresponding english word to the list
+            am.append(word.strip().replace(" ","_")) #Replace space in multiwords with "_" and add it to amharic list
     i=i+1
     
-engam['English'] = eng
-engam['Amharic'] = am
+engam['English'] = eng # add english list of words to the dictionary    
+engam['Amharic'] = am #add amharic list of words to the dictionary
 
-df = pd.DataFrame(engam)
-df.to_csv('amen.csv')
+df = pd.DataFrame(engam) #create pandas from the dictionary
+df.to_csv('amen.csv') #create csv file
+
+
