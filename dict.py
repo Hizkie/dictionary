@@ -9,7 +9,7 @@ for word in amharic:
     if word.startswith('1'):  #if a word start with a number remove the punctuation and the number. 
      
         word  = word.translate(str.maketrans('', '', string.punctuation)) #remove punctuation
-        words = re.split(r'\d',word) 
+        words = re.split(r'\d+',word) 
         if len(words)>1:
             eng.append(data['English'].loc[i]) # add the corresponding english word to the list
             am.append(words[1].strip().replace(" ","_")) # add the modified amharic word to the list by replacing space in multiwords with "_" 
